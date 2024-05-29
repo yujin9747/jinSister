@@ -70,6 +70,35 @@ const QuestionPage = () => {
         }
     }
 
+    const getButtonFontSize = (buttonName: any) => {
+        if (selectedButton === buttonName) {
+            return '20px'
+        } else {
+            return '15px'
+        }
+    }
+
+    const getButtonBackgroundColor = (buttonName: any) => {
+        if (selectedButton === buttonName) {
+            return '#fff'
+        }
+
+        switch (buttonName) {
+            case '매우 그렇지 않다':
+                return '#d9d9ff'
+            case '그렇지 않다':
+                return '#b5b6ff'
+            case '보통이다':
+                return '#9092fc'
+            case '약간 그렇다':
+                return '#7779fc'
+            case '매우 그렇다':
+                return '#6366ff'
+            default:
+                return '#6366ff'
+        }
+    }
+
     return (
         <Container fluid>
             <Row className="vh-100">
@@ -86,10 +115,12 @@ const QuestionPage = () => {
                             style={{
                                 width: getButtonWidth('매우 그렇지 않다'),
                                 height: getButtonHeight('매우 그렇지 않다'),
-                                backgroundColor: '#DFF5FF',
+                                backgroundColor: getButtonBackgroundColor('매우 그렇지 않다'),
+                                color: '#0c0e94',
                                 borderRadius: '0',
                                 border: 'none',
-                                fontWeight: 'bold'
+                                fontWeight: 'bold',
+                                fontSize: getButtonFontSize('매우 그렇지 않다')
                             }}
                         >
                             매우 그렇지 않다
@@ -100,10 +131,12 @@ const QuestionPage = () => {
                             style={{
                                 width: getButtonWidth('그렇지 않다'),
                                 height: getButtonHeight('그렇지 않다'),
-                                backgroundColor: '#B8E9FF',
+                                backgroundColor: getButtonBackgroundColor('그렇지 않다'),
+                                color: '#0c0e94',
                                 borderRadius: '0',
                                 border: 'none',
-                                fontWeight: 'bold'
+                                fontWeight: 'bold',
+                                fontSize: getButtonFontSize('그렇지 않다')
                             }}
                         >
                             그렇지 않다
@@ -114,11 +147,12 @@ const QuestionPage = () => {
                             style={{
                                 width: getButtonWidth('보통이다'),
                                 height: getButtonHeight('보통이다'),
-                                backgroundColor: '#67C6E3',
-                                color: '#ffffff',
+                                backgroundColor: getButtonBackgroundColor('보통이다'),
+                                color: '#0c0e94',
                                 borderRadius: '0',
                                 border: 'none',
-                                fontWeight: 'bold'
+                                fontWeight: 'bold',
+                                fontSize: getButtonFontSize('보통이다')
                             }}
                         >
                             보통이다
@@ -129,11 +163,12 @@ const QuestionPage = () => {
                             style={{
                                 width: getButtonWidth('약간 그렇다'),
                                 height: getButtonHeight('약간 그렇다'),
-                                backgroundColor: '#378CE7',
-                                color: '#ffffff',
+                                backgroundColor: getButtonBackgroundColor('약간 그렇다'),
+                                color: '#06074f',
                                 borderRadius: '0',
                                 border: 'none',
-                                fontWeight: 'bold'
+                                fontWeight: 'bold',
+                                fontSize: getButtonFontSize('약간 그렇다')
                             }}
                         >
                             약간 그렇다
@@ -144,11 +179,12 @@ const QuestionPage = () => {
                             style={{
                                 width: getButtonWidth('매우 그렇다'),
                                 height: getButtonHeight('매우 그렇다'),
-                                backgroundColor: '#5356FF',
-                                color: '#ffffff',
+                                backgroundColor: getButtonBackgroundColor('매우 그렇다'),
+                                color: '#06074f',
                                 borderRadius: '0',
                                 border: 'none',
-                                fontWeight: 'bold'
+                                fontWeight: 'bold',
+                                fontSize: getButtonFontSize('매우 그렇다')
                             }}
                         >
                             매우 그렇다
