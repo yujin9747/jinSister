@@ -6,6 +6,7 @@ import {useNavigate} from "react-router";
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
+    const colors = ['#4de320', '#3949ab']
 
     return (
         <Container fluid>
@@ -20,7 +21,7 @@ const MainPage: React.FC = () => {
                             variant="contained"
                             size="large"
                             style={{ marginTop: '20px', width: '75%', backgroundColor: '#3949ab' }}
-                            onClick={() => navigate("/question")}
+                            onClick={() => navigate("/question/1")}
                         >
                             시작하기
                         </Button>
