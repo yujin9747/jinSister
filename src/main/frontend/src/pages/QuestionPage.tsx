@@ -1,12 +1,8 @@
+import {Col, Container, Image, Row} from "react-bootstrap";
+import Button from "@mui/material/Button";
 import React from "react";
-import { Image, Col, Container, Row} from "react-bootstrap";
-import Button from '@mui/material/Button';
-import {useNavigate} from "react-router";
 
-
-const MainPage: React.FC = () => {
-    const navigate = useNavigate();
-
+const QuestionPage = () => {
     return (
         <Container fluid>
             <Row className="vh-100">
@@ -20,9 +16,17 @@ const MainPage: React.FC = () => {
                             variant="contained"
                             size="large"
                             style={{ marginTop: '20px', width: '75%', backgroundColor: '#3949ab' }}
-                            onClick={() => navigate("/question")}
+                            onClick={() => console.log('clicked')}
                         >
-                            시작하기
+                            예
+                        </Button>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            style={{ marginTop: '20px', width: '75%', backgroundColor: '#3949ab' }}
+                            onClick={() => console.log('clicked')}
+                        >
+                            아니오
                         </Button>
                     </Row>
                 </Col>
@@ -32,4 +36,4 @@ const MainPage: React.FC = () => {
     )
 }
 
-export default MainPage
+export default QuestionPage
