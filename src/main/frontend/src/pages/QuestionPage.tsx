@@ -1,5 +1,5 @@
 import {Col, Container, Form, Image, Row, Modal} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import Button from "@mui/material/Button";
 
@@ -48,6 +48,28 @@ const QuestionPage = () => {
         }
     }
 
+    const [selectedButton, setSelectedButton] = useState(null)
+    const handleButtonClick = (buttonName: any) => {
+        setSelectedButton(buttonName)
+        console.log(buttonName)
+    }
+
+    const getButtonWidth = (buttonName: any) => {
+        if (selectedButton === buttonName) {
+            return '82%'
+        } else {
+            return '75%'
+        }
+    }
+
+    const getButtonHeight = (buttonName: any) => {
+        if (selectedButton === buttonName) {
+            return '45px'
+        } else {
+            return '35px'
+        }
+    }
+
     return (
         <Container fluid>
             <Row className="vh-100">
@@ -55,22 +77,80 @@ const QuestionPage = () => {
                 <Col md={4} sm={12}>
                     <div style={{height: '70%', display: 'flex', justifyContent: 'center'}}>
                         <Image src={require(`../image/question${parsedId}.png`)} rounded width='90%' height='auto'
-                               style={{marginTop: '10%', marginBottom: '20px'}}></Image>
+                               style={{marginTop: '10%'}}></Image>
                     </div>
-                    <Form>
-                        <Button onClick={() => console.log('매우 그렇지 않다')} style={{width: '100%'}}>
+                    <Form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleButtonClick('매우 그렇지 않다')}
+                            style={{
+                                width: getButtonWidth('매우 그렇지 않다'),
+                                height: getButtonHeight('매우 그렇지 않다'),
+                                backgroundColor: '#DFF5FF',
+                                borderRadius: '0',
+                                border: 'none',
+                                fontWeight: 'bold'
+                            }}
+                        >
                             매우 그렇지 않다
                         </Button>
-                        <Button onClick={() => console.log('그렇지 않다')} style={{width: '100%'}}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleButtonClick('그렇지 않다')}
+                            style={{
+                                width: getButtonWidth('그렇지 않다'),
+                                height: getButtonHeight('그렇지 않다'),
+                                backgroundColor: '#B8E9FF',
+                                borderRadius: '0',
+                                border: 'none',
+                                fontWeight: 'bold'
+                            }}
+                        >
                             그렇지 않다
                         </Button>
-                        <Button onClick={() => console.log('보통이다')} style={{width: '100%'}}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleButtonClick('보통이다')}
+                            style={{
+                                width: getButtonWidth('보통이다'),
+                                height: getButtonHeight('보통이다'),
+                                backgroundColor: '#67C6E3',
+                                color: '#ffffff',
+                                borderRadius: '0',
+                                border: 'none',
+                                fontWeight: 'bold'
+                            }}
+                        >
                             보통이다
                         </Button>
-                        <Button onClick={() => console.log('약간 그렇다')} style={{width: '100%'}}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleButtonClick('약간 그렇다')}
+                            style={{
+                                width: getButtonWidth('약간 그렇다'),
+                                height: getButtonHeight('약간 그렇다'),
+                                backgroundColor: '#378CE7',
+                                color: '#ffffff',
+                                borderRadius: '0',
+                                border: 'none',
+                                fontWeight: 'bold'
+                            }}
+                        >
                             약간 그렇다
                         </Button>
-                        <Button onClick={() => console.log('매우 그렇다')} style={{width: '100%'}}>
+                        <Button
+                            variant="contained"
+                            onClick={() => handleButtonClick('매우 그렇다')}
+                            style={{
+                                width: getButtonWidth('매우 그렇다'),
+                                height: getButtonHeight('매우 그렇다'),
+                                backgroundColor: '#5356FF',
+                                color: '#ffffff',
+                                borderRadius: '0',
+                                border: 'none',
+                                fontWeight: 'bold'
+                            }}
+                        >
                             매우 그렇다
                         </Button>
                         <Button onClick={handleBefore} style={{width: '100%'}}>
