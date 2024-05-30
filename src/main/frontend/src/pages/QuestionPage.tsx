@@ -23,7 +23,7 @@ const QuestionPage = () => {
     };
 
     const handleNext = () => {
-        if (parsedId < 4) {
+        if (parsedId < 30) {
             navigate(`/question/${parsedId + 1}`)
         } else {
             navigate('/result')
@@ -194,6 +194,9 @@ const QuestionPage = () => {
                         </Button>
                         <Button onClick={handleNext} style={{width: '100%'}}>
                             다음
+                        </Button>
+                        <Button onClick={handleShow} style={{width: '100%'}}>
+                            홈 화면으로 돌아가기
                         </Button>
                     </Form>
                 </Col>

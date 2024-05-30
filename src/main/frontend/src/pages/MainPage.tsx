@@ -14,7 +14,7 @@ const MainPage: React.FC = () => {
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
                     <div style={{ height: '70%', display: 'flex', justifyContent: 'center' }}>
-                        <Image src={require('../image/mainPage2.png')} rounded width='90%' height='auto' style={{marginTop: '10%', marginBottom: '20px' }}></Image>
+                        <Image src={require('../image/mainPage.png')} rounded width='90%' height='auto' style={{marginTop: '10%', marginBottom: '20px' }}></Image>
                     </div>
                     <Row style={{ display: 'flex', justifyContent: 'center' }}>
                         <Button
