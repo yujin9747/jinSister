@@ -6,7 +6,6 @@ import {useNavigate} from "react-router";
 
 const MainPage: React.FC = () => {
     const navigate = useNavigate();
-    const colors = ['#4de320', '#3949ab']
 
     return (
         <Container fluid>

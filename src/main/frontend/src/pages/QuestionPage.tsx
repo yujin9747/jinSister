@@ -7,20 +7,6 @@ const QuestionPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
     const parsedId = parseInt(id!)
-    const questionIndex = parsedId - 1
-    const radioOptions = [
-        { value: 'option1', fontSize: 40 },
-        { value: 'option2', fontSize: 30 },
-        { value: 'option3', fontSize: 20 },
-        { value: 'option4', fontSize: 30 },
-        { value: 'option5', fontSize: 40 },
-    ];
-    const [selectedValue, setSelectedValue] = useState('');
-
-    const handleRadioChange = (event: any) => {
-        setSelectedValue(event.target.value);
-        console.log(event.target.value)
-    };
 
     const handleNext = () => {
         if (parsedId < 30) {
@@ -49,9 +35,14 @@ const QuestionPage = () => {
     }
 
     const [selectedButton, setSelectedButton] = useState(null)
+    const [answers, setAnswers] = useState(Array(30).fill(null))
     const handleButtonClick = (buttonName: any) => {
         setSelectedButton(buttonName)
         console.log(buttonName)
+
+        const newAnswers = [...answers]
+        newAnswers[parsedId-1] = buttonName
+        setAnswers(newAnswers)
     }
 
     const getButtonWidth = (buttonName: any) => {
@@ -98,6 +89,10 @@ const QuestionPage = () => {
                 return '#6366ff'
         }
     }
+
+    useEffect(() => {
+        console.log(answers)
+    }, [answers])
 
     return (
         <Container fluid>
