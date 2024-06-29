@@ -1,19 +1,19 @@
 import {Col, Container, Image, Modal, Row} from "react-bootstrap";
 import React, {useState} from "react";
 import Button from "@mui/material/Button";
-import resultImage from '../image/resultPage.jpeg'
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate, useParams} from "react-router";
 const ResultPage = () => {
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
+    const { resultId } = useParams()
 
     const downloadImage = () => {
         const link = document.createElement('a');
-        link.href = resultImage;
-        link.download = 'resultPage.jpeg';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // link.href = resultImage;
+        // link.download = 'resultPage.jpeg';
+        // document.body.appendChild(link);
+        // link.click();
+        // document.body.removeChild(link);
     }
 
     const handleClose = () => setShow(false);
@@ -31,7 +31,7 @@ const ResultPage = () => {
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
                     <div style={{height: '70%', display: 'flex', justifyContent: 'center'}}>
-                        <Image src={require(`../image/resultPage.jpeg`)} rounded width='90%' height='auto'
+                        <Image src={require(`../image/resultPage${resultId}.jpeg`)} rounded width='90%' height='auto'
                                style={{marginTop: '10%'}}></Image>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>

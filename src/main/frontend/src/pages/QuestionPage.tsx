@@ -13,8 +13,13 @@ const QuestionPage = () => {
         if (parsedId < 30) {
             navigate(`/question/${parsedId + 1}`)
         } else {
-            navigate('/result')
+            const resultId = determineResultId(answers)
+            navigate(`/result/${resultId}`, { state: answers })
         }
+    }
+
+    const determineResultId = (answers: string[]): number => {
+        return Math.floor(Math.random() * 5) + 1; // 임의의 결과 ID 반환 (1에서 5 사이)
     }
 
     const [show, setShow] = useState(false);
