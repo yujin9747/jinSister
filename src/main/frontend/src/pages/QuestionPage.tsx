@@ -9,6 +9,10 @@ const QuestionPage = () => {
     const parsedId = parseInt(id!)
 
     const handleNext = () => {
+        if (!answers[parsedId - 1]) {
+            alert('답변 해야 넘어갈 수 있습니다.')
+            return;
+        }
         setSelectedButton(null)
         if (parsedId < 30) {
             navigate(`/question/${parsedId + 1}`)
@@ -117,6 +121,8 @@ const QuestionPage = () => {
 
     const [selectedButton, setSelectedButton] = useState(null)
     const [answers, setAnswers] = useState(Array(30).fill(null))
+    const [isAnswered, setIsAnswered] = useState(false)
+
     const handleButtonClick = (buttonName: any) => {
         setSelectedButton(buttonName)
         console.log(buttonName)
@@ -178,6 +184,10 @@ const QuestionPage = () => {
     useEffect(() => {
         setSelectedButton(answers[parsedId-1])
     }, [parsedId]);
+
+    useEffect(() => {
+        setIsAnswered(answers[parsedId - 1] !== null && answers[parsedId - 1] !== undefined);
+    }, [answers, parsedId]);
 
     return (
         <Container fluid>
@@ -269,12 +279,14 @@ const QuestionPage = () => {
                         >
                             매우 그렇다
                         </Button>
-                        <Button onClick={handleBefore} style={{width: '100%'}}>
-                            이전
-                        </Button>
-                        <Button onClick={handleNext} style={{width: '100%'}}>
-                            다음
-                        </Button>
+                        <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '20px'}}>
+                            <Button onClick={handleBefore} style={{flex: 1, marginRight: '5px'}}>
+                                이전
+                            </Button>
+                            <Button onClick={handleNext} style={{flex: 1, marginLeft: '5px'}} disabled={!isAnswered}>
+                                다음
+                            </Button>
+                        </div>
                         <Button onClick={handleShow} style={{width: '100%'}}>
                             홈 화면으로 돌아가기
                         </Button>

@@ -60,8 +60,8 @@ const ResultPage = () => {
                                style={{marginTop: '10%'}}></Image>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
-                        <Button onClick={downloadImage}>Download Image</Button>
-                        <Button onClick={handleShow} style={{width: '100%'}}>
+                        <Button onClick={downloadImage} style={{ flex: 1 }}>결과 이미지 다운로드</Button>
+                        <Button onClick={handleShow} style={{ flex: 1 }}>
                             홈 화면으로 돌아가기
                         </Button>
                     </div>
