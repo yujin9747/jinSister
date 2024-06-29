@@ -191,6 +191,36 @@ const QuestionPage = () => {
 
     return (
         <Container fluid>
+            <h1 style={{display: 'none'}}>방 안에 조용히 있으면 답답해지거나 잠이 온다.</h1>
+            <h1 style={{display: 'none'}}>과학이나 역사에 관한 책 읽기를 좋아한다.</h1>
+            <h1 style={{display: 'none'}}>나는 상상력이 풍부한 편이다.</h1>
+            <h1 style={{display: 'none'}}>여러 사람이 모이는 모임에 참석 하는 것이 좋다.</h1>
+            <h1 style={{display: 'none'}}>다른 사람에 비해 욕심과 야망이 큰 편이다.</h1>
+            <h1 style={{display: 'none'}}>나는 정리 정돈을 잘 해두는 편이다.</h1>
+            <h1 style={{display: 'none'}}>이론을 따지고 토론 하는 것을 보면 재미가 없다.</h1>
+            <h1 style={{display: 'none'}}>무엇이 궁금 하면 책을 찾아 보거나 실험 해보려 한다.</h1>
+            <h1 style={{display: 'none'}}>나는 좋아 하고 싫어 하는 일이 뚜렷 하다.</h1>
+            <h1 style={{display: 'none'}}>내 주위에는 늘 친한 친구들이 있다.</h1>
+            <h1 style={{display: 'none'}}>내가 앞장서서 하는 일을 좋아한다.</h1>
+            <h1 style={{display: 'none'}}>세밀하고 꼼꼼한 성격이다.</h1>
+            <h1 style={{display: 'none'}}>험한 운동도 피하지 않고 잘 한다.</h1>
+            <h1 style={{display: 'none'}}>나는 무엇을 새롭게 배우는 것이 즐겁다.</h1>
+            <h1 style={{display: 'none'}}>나는 감정이 풍부해서 조그마한 일에 감동한다.</h1>
+            <h1 style={{display: 'none'}}>다른 사람들과 대화에서 감정이 잘 통하는 편이다.</h1>
+            <h1 style={{display: 'none'}}>장래에 다른 사람들을 지도하는 지도자 역할을 하고 싶다.</h1>
+            <h1 style={{display: 'none'}}>무슨 일이든 계획한 대로 실행해야 마음이 편하다.</h1>
+            <h1 style={{display: 'none'}}>말을 다정스럽다기보다 무뚝뚝하게 하는 편이다.</h1>
+            <h1 style={{display: 'none'}}>예술보다 과학을 좋아한다.</h1>
+            <h1 style={{display: 'none'}}>나에게는 예술적 재능이 있는 것 같다.</h1>
+            <h1 style={{display: 'none'}}>인정이 많은 사람이 되고 싶다.</h1>
+            <h1 style={{display: 'none'}}>집단활동을 계획하고 이끌어가는 일을 좋아한다.</h1>
+            <h1 style={{display: 'none'}}>변화가 많고 복잡한 것은 별로 좋아하지 않는다.</h1>
+            <h1 style={{display: 'none'}}>방 안에서 보다 밖에서 활동적인 놀이나 운동을 좋아한다.</h1>
+            <h1 style={{display: 'none'}}>과학적 사실에 대해 알아보는 것이 즐겁다.</h1>
+            <h1 style={{display: 'none'}}>평범한 것보다 새롭고 별다른 것이 좋다.</h1>
+            <h1 style={{display: 'none'}}>다른 사람들 보다 따뜻하고 인정이 많은 편이다.</h1>
+            <h1 style={{display: 'none'}}>나는 적극적이고 주장이 강한 편이다.</h1>
+            <h1 style={{display: 'none'}}>원리원칙대로 행동하고 또 그렇게 살려고 한다.</h1>
             <Row className="vh-100">
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
@@ -198,7 +228,7 @@ const QuestionPage = () => {
                         <Image src={require(`../image/question${parsedId}.png`)} rounded width='90%' height='auto'
                                style={{marginTop: '10%'}}></Image>
                     </div>
-                    <Form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Button
                             variant="contained"
                             onClick={() => handleButtonClick(1)}
