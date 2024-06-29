@@ -15,6 +15,9 @@ const MainPage: React.FC = () => {
             <h1 style={{display: 'none'}}>테스트</h1>
             <h1 style={{display: 'none'}}>Test</h1>
             <h1 style={{display: 'none'}}>심리 테스트</h1>
+            <h1 style={{display: 'none'}}>스트롱 검사</h1>
+            <h1 style={{display: 'none'}}>GOT, BIS, PSS</h1>
+            <h1 style={{display: 'none'}}>일반직업분류</h1>
             <Row className="vh-100">
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
