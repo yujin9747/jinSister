@@ -13,8 +13,15 @@ const QuestionPage = () => {
         if (parsedId < 30) {
             navigate(`/question/${parsedId + 1}`)
         } else {
-            const resultId = determineResultId(answers)
-            navigate(`/result/${resultId}`, { state: answers })
+            const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
+            if (!allAnswered) {
+                console.log('모든 질문에 답변하지 않음.')
+                const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
+                navigate(`/question/${firstUnansweredQuestion + 1}`);
+            } else {
+                const resultId = determineResultId(answers)
+                navigate(`/result/${resultId}`, { state: answers })
+            }
         }
     }
 
@@ -30,7 +37,6 @@ const QuestionPage = () => {
             'R': 0,
         };
 
-        // 각 결과 유형에 대한 질문 리스트 (임의로 설정)
         const questionResults: Record<ResultType, number[]> = {
             'C': [6, 12, 18, 24, 30],
             'S': [4, 10, 16, 22, 28],
@@ -56,9 +62,8 @@ const QuestionPage = () => {
             }
         });
 
-        // 점수가 가장 높은 결과 유형을 반환
         let highestScore = 0;
-        let resultType: ResultType = 'C'; // 기본값으로 관습형 설정
+        let resultType: ResultType = 'C';
 
         let entries = Object.entries(resultTypeScores);
         for (const entry of entries) {
@@ -78,19 +83,19 @@ const QuestionPage = () => {
     const getResultImageNumber = (resultType: ResultType): number => {
         switch (resultType) {
             case 'C':
-                return 6; // 관습형에 해당하는 이미지 번호
+                return 6;
             case 'S':
-                return 1; // 사회형에 해당하는 이미지 번호
+                return 1;
             case 'A':
-                return 5; // 예술형에 해당하는 이미지 번호
+                return 5;
             case 'E':
-                return 3; // 진취형에 해당하는 이미지 번호
+                return 3;
             case 'I':
-                return 2; // 탐구형에 해당하는 이미지 번호
+                return 2;
             case 'R':
-                return 4; // 현장형에 해당하는 이미지 번호
+                return 4;
             default:
-                return 1; // 기본값으로 0을 반환하거나, 예외 처리에 사용할 수 있습니다.
+                return 1;
         }
     }
 
