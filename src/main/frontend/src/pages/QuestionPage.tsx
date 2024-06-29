@@ -9,6 +9,7 @@ const QuestionPage = () => {
     const parsedId = parseInt(id!)
 
     const handleNext = () => {
+        setSelectedButton(null)
         if (parsedId < 30) {
             navigate(`/question/${parsedId + 1}`)
         } else {
@@ -22,11 +23,11 @@ const QuestionPage = () => {
     const handleExit = () => {
         setShow(false)
         navigate('/')
-        // TODO: 기존에 선택했던 데이터 지우고 완전 처음으로 돌아가기
     }
     const handleShow = () => setShow(true);
 
     const handleBefore = () => {
+        setSelectedButton(null)
         if (parsedId > 1) {
             navigate(`/question/${parsedId - 1}`)
         } else {
