@@ -75,8 +75,6 @@ const QuestionPage = () => {
             }
         }
 
-        console.log(resultType)
-
         return getResultImageNumber(resultType)
     }
 
@@ -124,25 +122,8 @@ const QuestionPage = () => {
         console.log(buttonName)
 
         const newAnswers = [...answers]
-        newAnswers[parsedId-1] = mapButtonToScore(buttonName)
+        newAnswers[parsedId-1] = buttonName
         setAnswers(newAnswers)
-    }
-
-    const mapButtonToScore = (buttonName: string): number => {
-        switch (buttonName) {
-            case '매우 그렇다':
-                return 5;
-            case '약간 그렇다':
-                return 4;
-            case '보통이다':
-                return 3;
-            case '그렇지 않다':
-                return 2;
-            case '매우 그렇지 않다':
-                return 1;
-            default:
-                return 0; // 기본적으로 점수를 0으로 설정하거나, 에러 처리 등을 추가할 수 있습니다.
-        }
     }
 
     const getButtonWidth = (buttonName: any) => {
@@ -175,15 +156,15 @@ const QuestionPage = () => {
         }
 
         switch (buttonName) {
-            case '매우 그렇지 않다':
+            case 1:
                 return '#d9d9ff'
-            case '그렇지 않다':
+            case 2:
                 return '#b5b6ff'
-            case '보통이다':
+            case 3:
                 return '#9092fc'
-            case '약간 그렇다':
+            case 4:
                 return '#7779fc'
-            case '매우 그렇다':
+            case 5:
                 return '#6366ff'
             default:
                 return '#6366ff'
@@ -193,6 +174,10 @@ const QuestionPage = () => {
     useEffect(() => {
         console.log(answers)
     }, [answers])
+
+    useEffect(() => {
+        setSelectedButton(answers[parsedId-1])
+    }, [parsedId]);
 
     return (
         <Container fluid>
@@ -206,80 +191,80 @@ const QuestionPage = () => {
                     <Form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Button
                             variant="contained"
-                            onClick={() => handleButtonClick('매우 그렇지 않다')}
+                            onClick={() => handleButtonClick(1)}
                             style={{
-                                width: getButtonWidth('매우 그렇지 않다'),
-                                height: getButtonHeight('매우 그렇지 않다'),
-                                backgroundColor: getButtonBackgroundColor('매우 그렇지 않다'),
+                                width: getButtonWidth(1),
+                                height: getButtonHeight(1),
+                                backgroundColor: getButtonBackgroundColor(1),
                                 color: '#0c0e94',
                                 borderRadius: '0',
                                 border: 'none',
                                 fontWeight: 'bold',
-                                fontSize: getButtonFontSize('매우 그렇지 않다')
+                                fontSize: getButtonFontSize(1)
                             }}
                         >
                             매우 그렇지 않다
                         </Button>
                         <Button
                             variant="contained"
-                            onClick={() => handleButtonClick('그렇지 않다')}
+                            onClick={() => handleButtonClick(2)}
                             style={{
-                                width: getButtonWidth('그렇지 않다'),
-                                height: getButtonHeight('그렇지 않다'),
-                                backgroundColor: getButtonBackgroundColor('그렇지 않다'),
+                                width: getButtonWidth(2),
+                                height: getButtonHeight(2),
+                                backgroundColor: getButtonBackgroundColor(2),
                                 color: '#0c0e94',
                                 borderRadius: '0',
                                 border: 'none',
                                 fontWeight: 'bold',
-                                fontSize: getButtonFontSize('그렇지 않다')
+                                fontSize: getButtonFontSize(2)
                             }}
                         >
                             그렇지 않다
                         </Button>
                         <Button
                             variant="contained"
-                            onClick={() => handleButtonClick('보통이다')}
+                            onClick={() => handleButtonClick(3)}
                             style={{
-                                width: getButtonWidth('보통이다'),
-                                height: getButtonHeight('보통이다'),
-                                backgroundColor: getButtonBackgroundColor('보통이다'),
+                                width: getButtonWidth(3),
+                                height: getButtonHeight(3),
+                                backgroundColor: getButtonBackgroundColor(3),
                                 color: '#0c0e94',
                                 borderRadius: '0',
                                 border: 'none',
                                 fontWeight: 'bold',
-                                fontSize: getButtonFontSize('보통이다')
+                                fontSize: getButtonFontSize(3)
                             }}
                         >
                             보통이다
                         </Button>
                         <Button
                             variant="contained"
-                            onClick={() => handleButtonClick('약간 그렇다')}
+                            onClick={() => handleButtonClick(4)}
                             style={{
-                                width: getButtonWidth('약간 그렇다'),
-                                height: getButtonHeight('약간 그렇다'),
-                                backgroundColor: getButtonBackgroundColor('약간 그렇다'),
+                                width: getButtonWidth(4),
+                                height: getButtonHeight(4),
+                                backgroundColor: getButtonBackgroundColor(4),
                                 color: '#06074f',
                                 borderRadius: '0',
                                 border: 'none',
                                 fontWeight: 'bold',
-                                fontSize: getButtonFontSize('약간 그렇다')
+                                fontSize: getButtonFontSize(4)
                             }}
                         >
                             약간 그렇다
                         </Button>
                         <Button
                             variant="contained"
-                            onClick={() => handleButtonClick('매우 그렇다')}
+                            onClick={() => handleButtonClick(5)}
                             style={{
-                                width: getButtonWidth('매우 그렇다'),
-                                height: getButtonHeight('매우 그렇다'),
-                                backgroundColor: getButtonBackgroundColor('매우 그렇다'),
+                                width: getButtonWidth(5),
+                                height: getButtonHeight(5),
+                                backgroundColor: getButtonBackgroundColor(5),
                                 color: '#06074f',
                                 borderRadius: '0',
                                 border: 'none',
                                 fontWeight: 'bold',
-                                fontSize: getButtonFontSize('매우 그렇다')
+                                fontSize: getButtonFontSize(5)
                             }}
                         >
                             매우 그렇다
