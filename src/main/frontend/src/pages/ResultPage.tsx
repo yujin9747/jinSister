@@ -1,26 +1,51 @@
 import {Col, Container, Image, Modal, Row} from "react-bootstrap";
 import React, {useState} from "react";
 import Button from "@mui/material/Button";
-import {useLocation, useNavigate, useParams} from "react-router";
+import resultImage1 from '../image/resultPage1.jpeg';
+import resultImage2 from '../image/resultPage2.jpeg';
+import resultImage3 from '../image/resultPage3.jpeg';
+import resultImage4 from '../image/resultPage4.jpeg';
+import resultImage5 from '../image/resultPage5.jpeg';
+import resultImage6 from '../image/resultPage6.jpeg';
+import {useNavigate, useParams} from "react-router";
 const ResultPage = () => {
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const { resultId } = useParams()
 
+    const getResultImage = (id: string| undefined): [string, string] => {
+        switch (id) {
+            case '1':
+                return [ resultImage1, '서울특별시_해치' ];
+            case '2':
+                return [ resultImage2, '대전광역시_한꿈이&꿈돌이' ];
+            case '3':
+                return [ resultImage3, '세종_충녕' ];
+            case '4':
+                return [ resultImage4, '부산_부비' ];
+            case '5':
+                return [ resultImage5, '대구광역시_패션이' ];
+            case '6':
+                return [ resultImage6, '충청북도_고드미&바르미' ];
+            default:
+                return [ resultImage1, '서울특별시_해치' ];
+        }
+    }
+
     const downloadImage = () => {
+        const imageUrl = getResultImage(resultId)
         const link = document.createElement('a');
-        // link.href = resultImage;
-        // link.download = 'resultPage.jpeg';
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
+        link.href = imageUrl[0];
+        link.download = `지역_마스코트_성격_유형_테스트_${imageUrl[1]}.jpeg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     const handleClose = () => setShow(false);
     const handleExit = () => {
         setShow(false)
         navigate('/')
-        // TODO: 기존에 선택했던 데이터 지우고 완전 처음으로 돌아가기
     }
     const handleShow = () => setShow(true);
 
