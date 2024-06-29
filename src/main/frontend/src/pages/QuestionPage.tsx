@@ -18,8 +18,80 @@ const QuestionPage = () => {
         }
     }
 
-    const determineResultId = (answers: string[]): number => {
-        return Math.floor(Math.random() * 5) + 1; // 임의의 결과 ID 반환 (1에서 5 사이)
+    type ResultType = 'C' | 'S' | 'A' | 'E' | 'I' | 'R';
+
+    const determineResultId = (answers: number[]): number => {
+        const resultTypeScores: Record<ResultType, number> = {
+            'C': 0,
+            'S': 0,
+            'A': 0,
+            'E': 0,
+            'I': 0,
+            'R': 0,
+        };
+
+        // 각 결과 유형에 대한 질문 리스트 (임의로 설정)
+        const questionResults: Record<ResultType, number[]> = {
+            'C': [6, 12, 18, 24, 30],
+            'S': [4, 10, 16, 22, 28],
+            'A': [3, 9, 15, 21, 27],
+            'E': [5, 11, 17, 23, 29],
+            'I': [2, 8, 14, 20, 26],
+            'R': [1, 7, 13, 19, 25],
+        };
+
+        answers.forEach((answer, index) => {
+            if (questionResults.C.includes(index + 1)) {
+                resultTypeScores.C += answer;
+            } else if (questionResults.S.includes(index + 1)) {
+                resultTypeScores.S += answer;
+            } else if (questionResults.A.includes(index + 1)) {
+                resultTypeScores.A += answer;
+            } else if (questionResults.E.includes(index + 1)) {
+                resultTypeScores.E += answer;
+            } else if (questionResults.I.includes(index + 1)) {
+                resultTypeScores.I += answer;
+            } else if (questionResults.R.includes(index + 1)) {
+                resultTypeScores.R += answer;
+            }
+        });
+
+        // 점수가 가장 높은 결과 유형을 반환
+        let highestScore = 0;
+        let resultType: ResultType = 'C'; // 기본값으로 관습형 설정
+
+        let entries = Object.entries(resultTypeScores);
+        for (const entry of entries) {
+            let type = entry[0];
+            let score = entry[1];
+            if (score > highestScore) {
+                highestScore = score;
+                resultType = type as ResultType;
+            }
+        }
+
+        console.log(resultType)
+
+        return getResultImageNumber(resultType)
+    }
+
+    const getResultImageNumber = (resultType: ResultType): number => {
+        switch (resultType) {
+            case 'C':
+                return 6; // 관습형에 해당하는 이미지 번호
+            case 'S':
+                return 1; // 사회형에 해당하는 이미지 번호
+            case 'A':
+                return 5; // 예술형에 해당하는 이미지 번호
+            case 'E':
+                return 3; // 진취형에 해당하는 이미지 번호
+            case 'I':
+                return 2; // 탐구형에 해당하는 이미지 번호
+            case 'R':
+                return 4; // 현장형에 해당하는 이미지 번호
+            default:
+                return 1; // 기본값으로 0을 반환하거나, 예외 처리에 사용할 수 있습니다.
+        }
     }
 
     const [show, setShow] = useState(false);
@@ -47,8 +119,25 @@ const QuestionPage = () => {
         console.log(buttonName)
 
         const newAnswers = [...answers]
-        newAnswers[parsedId-1] = buttonName
+        newAnswers[parsedId-1] = mapButtonToScore(buttonName)
         setAnswers(newAnswers)
+    }
+
+    const mapButtonToScore = (buttonName: string): number => {
+        switch (buttonName) {
+            case '매우 그렇다':
+                return 5;
+            case '약간 그렇다':
+                return 4;
+            case '보통이다':
+                return 3;
+            case '그렇지 않다':
+                return 2;
+            case '매우 그렇지 않다':
+                return 1;
+            default:
+                return 0; // 기본적으로 점수를 0으로 설정하거나, 에러 처리 등을 추가할 수 있습니다.
+        }
     }
 
     const getButtonWidth = (buttonName: any) => {
