@@ -204,6 +204,41 @@ const QuestionPage = () => {
         setIsAnswered(answers[parsedId - 1] !== null && answers[parsedId - 1] !== undefined);
     }, [answers, parsedId]);
 
+    const backgroundImage = require('../image/questionPage.png');
+    const questions = [
+        '방 안에 조용히 있으면 \n답답해 지거나 잠이 온다',
+        '과학이나 역사에 관한 \n책 읽기를 좋아한다',
+        '나는 상상력이 \n풍부한 편이다',
+        '여러 사람이 모이는 모임에 \n참석 하는 것이 좋다',
+        '다른 사람에 비해 \n욕심과 야망이 큰 편이다',
+        '나는 정리 정돈을 \n잘 해두는 편이다',
+        '이론을 따지고 토론 하는 것을 보면 \n재미가 없다',
+        '무엇이 궁금 하면 \n책을 찾아 보거나 \n실험 해보려 한다',
+        '나는 좋아 하고 싫어 하는 \n일이 뚜렷 하다',
+        '내 주위에는 \n늘 친한 친구들이 있다',
+
+        '내가 앞장 서서 하는 일을 \n좋아한다',
+        '세밀하고 꼼꼼한 성격이다',
+        '험한 운동도 \n피하지 않고 잘 한다',
+        '나는 무엇을 새롭게 \n배우는 것이 즐겁다',
+        '나는 감정이 풍부해서 \n조그마한 일에 감동한다',
+        '다른 사람들과 대화에서 \n감정이 잘 통하는 편이다',
+        '장래에 다른 사람들을 지도하는 \n지도자 역할을 하고 싶다',
+        '무슨 일이든 계획한 대로 \n실행해야 마음이 편하다',
+        '말을 다정스럽다기 보다 \n무뚝뚝하게 하는 편이다',
+        '예술보다 과학을 좋아한다',
+
+        '나에게는 예술적 재능이 \n있는 것 같다',
+        '인정이 많은 사람이 되고 싶다',
+        '집단활동을 계획하고 \n이끌어가는 일을 좋아한다',
+        '변화가 많고 복잡한 것은 \n별로 좋아하지 않는다',
+        '방 안에서 보다 밖에서 \n활동적인 놀이나 운동을 좋아한다',
+        '과학적 사실에 대해 \n알아보는 것이 즐겁다',
+        '평범한 것보다 새롭고 \n별다른 것이 좋다',
+        '다른 사람들 보다 \n따뜻하고 인정이 많은 편이다',
+        '나는 적극적이고 \n주장이 강한 편이다',
+        '원리원칙대로 행동하고 \n또 그렇게 살려고 한다'
+    ]
     return (
         <Container fluid>
             <h1 style={{display: 'none'}}>방 안에 조용히 있으면 답답해지거나 잠이 온다.</h1>
@@ -216,6 +251,7 @@ const QuestionPage = () => {
             <h1 style={{display: 'none'}}>무엇이 궁금 하면 책을 찾아 보거나 실험 해보려 한다.</h1>
             <h1 style={{display: 'none'}}>나는 좋아 하고 싫어 하는 일이 뚜렷 하다.</h1>
             <h1 style={{display: 'none'}}>내 주위에는 늘 친한 친구들이 있다.</h1>
+
             <h1 style={{display: 'none'}}>내가 앞장서서 하는 일을 좋아한다.</h1>
             <h1 style={{display: 'none'}}>세밀하고 꼼꼼한 성격이다.</h1>
             <h1 style={{display: 'none'}}>험한 운동도 피하지 않고 잘 한다.</h1>
@@ -226,6 +262,7 @@ const QuestionPage = () => {
             <h1 style={{display: 'none'}}>무슨 일이든 계획한 대로 실행해야 마음이 편하다.</h1>
             <h1 style={{display: 'none'}}>말을 다정스럽다기보다 무뚝뚝하게 하는 편이다.</h1>
             <h1 style={{display: 'none'}}>예술보다 과학을 좋아한다.</h1>
+
             <h1 style={{display: 'none'}}>나에게는 예술적 재능이 있는 것 같다.</h1>
             <h1 style={{display: 'none'}}>인정이 많은 사람이 되고 싶다.</h1>
             <h1 style={{display: 'none'}}>집단활동을 계획하고 이끌어가는 일을 좋아한다.</h1>
@@ -236,12 +273,31 @@ const QuestionPage = () => {
             <h1 style={{display: 'none'}}>다른 사람들 보다 따뜻하고 인정이 많은 편이다.</h1>
             <h1 style={{display: 'none'}}>나는 적극적이고 주장이 강한 편이다.</h1>
             <h1 style={{display: 'none'}}>원리원칙대로 행동하고 또 그렇게 살려고 한다.</h1>
+
             <Row className="vh-100">
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
-                    <div style={{height: '70%', display: 'flex', justifyContent: 'center'}}>
-                        <Image src={require(`../image/question${parsedId}.png`)} rounded width='90%' height='auto'
-                               style={{marginTop: '10%'}}></Image>
+                    <div style={{
+                        marginTop: '10%',
+                        marginBottom: '10%',
+                        height: '50%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        backgroundImage: `url(${backgroundImage})`,
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        alignItems: 'center',
+                    }}>
+                        <div style={{
+                            textAlign: 'center',
+                            color: 'black',
+                            fontSize: '2rem',
+                            fontWeight: 'bold',
+                            whiteSpace: 'pre-line'
+                        }}>
+                            {questions[parsedId-1]}
+                        </div>
                     </div>
                     <Form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Button
