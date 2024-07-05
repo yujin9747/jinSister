@@ -1,5 +1,5 @@
 import {Col, Container, Form, Image, Row, Modal} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import Button from "@mui/material/Button";
 
@@ -19,7 +19,6 @@ const QuestionPage = () => {
         } else {
             const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
             if (!allAnswered) {
-                console.log('모든 질문에 답변하지 않음.')
                 const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
                 navigate(`/question/${firstUnansweredQuestion + 1}`);
             } else {
@@ -130,6 +129,22 @@ const QuestionPage = () => {
         const newAnswers = [...answers]
         newAnswers[parsedId-1] = buttonName
         setAnswers(newAnswers)
+
+        setTimeout(() => {
+            setSelectedButton(null)
+            if (parsedId < 30) {
+                navigate(`/question/${parsedId + 1}`)
+            } else {
+                const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
+                if (!allAnswered) {
+                    const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
+                    navigate(`/question/${firstUnansweredQuestion + 1}`);
+                } else {
+                    const resultId = determineResultId(answers)
+                    navigate(`/result/${resultId}`, { state: answers })
+                }
+            }
+        }, 500);
     }
 
     const getButtonWidth = (buttonName: any) => {
