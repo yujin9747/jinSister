@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import {FaArrowLeft, FaArrowRight, FaHome} from "react-icons/fa";
 import axios from "axios";
 
+
 const QuestionPage = () => {
     const navigate = useNavigate()
     const { id } = useParams()
@@ -16,8 +17,12 @@ const QuestionPage = () => {
     }
 
     type ResultType = 'C' | 'S' | 'A' | 'E' | 'I' | 'R';
+    interface PostJandi {
+        answers: number[];
+        resultType: ResultType;
+    }
 
-    const determineResultId = (answers: number[]): number => {
+    const determineResultId = async (answers: number[]): Promise<number> => {
         const resultTypeScores: Record<ResultType, number> = {
             'C': 0,
             'S': 0,
@@ -65,14 +70,24 @@ const QuestionPage = () => {
             }
         }
 
-        axios.post(
+        await axios.post(
             'https://wh.jandi.com/connect-api/webhook/31418946/1578432fd5308f5f846d71dfb5b6f78f',
-            'test'
+            {
+                body: JSON.stringify({
+                    answers: answers,
+                    resultType: resultType
+                })
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/vnd.tosslab.jandi-v2+json'
+                }
+            }
         ).then(r => {
             console.log(r)
         })
 
-         return getResultImageNumber(resultType)
+        return getResultImageNumber(resultType)
     }
 
     const getResultImageNumber = (resultType: ResultType): number => {
@@ -117,7 +132,7 @@ const QuestionPage = () => {
     const [isAnswered, setIsAnswered] = useState(false)
 
     useEffect(() => {
-        setTimeout(() => {
+        setTimeout(async () => {
             setSelectedButton(null)
             const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
             if (!allAnswered) {
@@ -131,8 +146,8 @@ const QuestionPage = () => {
                         eventLabel: answers
                     }
                 )
-                const resultId = determineResultId(answers)
-                navigate(`/result/${resultId}`, { state: answers })
+                const resultId = await determineResultId(answers)
+                navigate(`/result/${resultId}`, {state: answers})
             }
         }, 500);
     }, answers)
