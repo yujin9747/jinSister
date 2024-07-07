@@ -275,14 +275,12 @@ const QuestionPage = () => {
             <h1 style={{display: 'none'}}>나는 적극적이고 주장이 강한 편이다.</h1>
             <h1 style={{display: 'none'}}>원리원칙대로 행동하고 또 그렇게 살려고 한다.</h1>
 
-            <Row className="vh-100">
+            <Row className="vh-100 align-items-center">
                 <Col md={4} className="d-none d-md-block"></Col>
-                {/*<Col md={4} sm={0}></Col>*/}
-                <Col md={4} sm={12}>
+                <Col md={4} sm={12} className="d-flex flex-column justify-content-center">
                     <div style={{
-                        marginTop: '10%',
-                        marginBottom: '5px',
-                        height: '50%',
+                        width: '100%',
+                        height: '45vh',
                         display: 'flex',
                         justifyContent: 'center',
                         backgroundImage: `url(${backgroundImage})`,
@@ -308,7 +306,7 @@ const QuestionPage = () => {
                         <div
                             onClick={() => handleButtonClick(1)}
                             style={{
-                                width: '95%',
+                                width: '100%',
                                 height: '3rem',
                                 borderRadius: '15px',
                                 border: '2px solid black',
@@ -327,7 +325,7 @@ const QuestionPage = () => {
                         <div
                             onClick={() => handleButtonClick(2)}
                             style={{
-                                width: '95%',
+                                width: '100%',
                                 height: '3rem',
                                 borderRadius: '15px',
                                 border: '2px solid black',
@@ -346,7 +344,7 @@ const QuestionPage = () => {
                         <div
                             onClick={() => handleButtonClick(3)}
                             style={{
-                                width: '95%',
+                                width: '100%',
                                 height: '3rem',
                                 borderRadius: '15px',
                                 border: '2px solid black',
@@ -365,7 +363,7 @@ const QuestionPage = () => {
                         <div
                             onClick={() => handleButtonClick(4)}
                             style={{
-                                width: '95%',
+                                width: '100%',
                                 height: '3rem',
                                 borderRadius: '15px',
                                 border: '2px solid black',
@@ -384,7 +382,7 @@ const QuestionPage = () => {
                         <div
                             onClick={() => handleButtonClick(5)}
                             style={{
-                                width: '95%',
+                                width: '100%',
                                 height: '3rem',
                                 borderRadius: '15px',
                                 border: '2px solid black',
@@ -414,7 +412,6 @@ const QuestionPage = () => {
                     </Form>
                 </Col>
                 <Col md={4} className="d-none d-md-block"></Col>
-                {/*<Col md={4} sm={0}></Col>*/}
             </Row>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
