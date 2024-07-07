@@ -67,6 +67,7 @@ const ResultPage = () => {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+    margin-top: 10px;    
 `;
 
 // 버튼을 배치시키는 컨테이너

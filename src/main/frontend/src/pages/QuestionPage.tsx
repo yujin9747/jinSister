@@ -10,23 +10,8 @@ const QuestionPage = () => {
     const parsedId = parseInt(id!)
 
     const handleNext = () => {
-        if (!answers[parsedId - 1]) {
-            alert('답변 해야 넘어갈 수 있습니다.')
-            return;
-        }
         setSelectedButton(null)
-        if (parsedId < 30) {
-            navigate(`/question/${parsedId + 1}`)
-        } else {
-            const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
-            if (!allAnswered) {
-                const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
-                navigate(`/question/${firstUnansweredQuestion + 1}`);
-            } else {
-                const resultId = determineResultId(answers)
-                navigate(`/result/${resultId}`, { state: answers })
-            }
-        }
+        navigate(`/question/${parsedId + 1}`)
     }
 
     type ResultType = 'C' | 'S' | 'A' | 'E' | 'I' | 'R';
@@ -123,79 +108,26 @@ const QuestionPage = () => {
     const [answers, setAnswers] = useState(Array(30).fill(null))
     const [isAnswered, setIsAnswered] = useState(false)
 
+    useEffect(() => {
+        setTimeout(() => {
+            setSelectedButton(null)
+            const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
+            if (!allAnswered) {
+                const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
+                navigate(`/question/${firstUnansweredQuestion + 1}`);
+            } else {
+                const resultId = determineResultId(answers)
+                navigate(`/result/${resultId}`, { state: answers })
+            }
+        }, 500);
+    }, answers)
     const handleButtonClick = (buttonName: any) => {
         setSelectedButton(buttonName)
-        console.log(buttonName)
 
         const newAnswers = [...answers]
         newAnswers[parsedId-1] = buttonName
         setAnswers(newAnswers)
-
-        setTimeout(() => {
-            setSelectedButton(null)
-            if (parsedId < 30) {
-                navigate(`/question/${parsedId + 1}`)
-            } else {
-                const allAnswered = answers.every(answer => answer !== null && answer !== undefined && answer !== '');
-                if (!allAnswered) {
-                    const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
-                    navigate(`/question/${firstUnansweredQuestion + 1}`);
-                } else {
-                    const resultId = determineResultId(answers)
-                    navigate(`/result/${resultId}`, { state: answers })
-                }
-            }
-        }, 500);
     }
-
-    const getButtonWidth = (buttonName: any) => {
-        if (selectedButton === buttonName) {
-            return '82%'
-        } else {
-            return '75%'
-        }
-    }
-
-    const getButtonHeight = (buttonName: any) => {
-        if (selectedButton === buttonName) {
-            return '45px'
-        } else {
-            return '35px'
-        }
-    }
-
-    const getButtonFontSize = (buttonName: any) => {
-        if (selectedButton === buttonName) {
-            return '20px'
-        } else {
-            return '15px'
-        }
-    }
-
-    const getButtonBackgroundColor = (buttonName: any) => {
-        if (selectedButton === buttonName) {
-            return '#fff'
-        }
-
-        switch (buttonName) {
-            case 1:
-                return '#d9d9ff'
-            case 2:
-                return '#b5b6ff'
-            case 3:
-                return '#9092fc'
-            case 4:
-                return '#7779fc'
-            case 5:
-                return '#6366ff'
-            default:
-                return '#6366ff'
-        }
-    }
-
-    // useEffect(() => {
-    //     console.log(answers)
-    // }, [answers])
 
     useEffect(() => {
         setSelectedButton(answers[parsedId-1])
@@ -241,9 +173,6 @@ const QuestionPage = () => {
         '원리원칙대로 행동하고 \n또 그렇게 살려고 한다'
     ]
 
-    useEffect(() => {
-        console.log(selectedButton)
-    }, [selectedButton]);
     return (
         <Container fluid>
             <h1 style={{display: 'none'}}>방 안에 조용히 있으면 답답해지거나 잠이 온다.</h1>
