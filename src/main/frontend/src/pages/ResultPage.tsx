@@ -8,11 +8,18 @@ import resultImage4 from '../image/resultPage4.jpeg';
 import resultImage5 from '../image/resultPage5.jpeg';
 import resultImage6 from '../image/resultPage6.jpeg';
 import {useNavigate, useParams} from "react-router";
-import {BsArrowLeft, BsDownload} from "react-icons/bs";
-import {FaArrowLeft, FaDownload} from "react-icons/fa";
+import {FaArrowLeft, FaDownload, FaShare} from "react-icons/fa";
+import styled from "@emotion/styled";
+// import { CopyToClipboard } from 'react-copy-to-clipboard'
+import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
+import {IconButton} from "@mui/material";
+import {Share} from '@material-ui/icons';
+
 const ResultPage = () => {
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
+    const [showInvalidBrowser, setShowInvalidBrowser] = useState(false);
+
     const { resultId } = useParams()
 
     const getResultImage = (id: string| undefined): [string, string] => {
@@ -44,13 +51,66 @@ const ResultPage = () => {
         document.body.removeChild(link);
     }
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        setShowInvalidBrowser(false);
+    }
     const handleExit = () => {
         setShow(false)
         navigate('/')
     }
     const handleShow = () => setShow(true);
     const backgroundImage = require('../image/questionPage.png');
+
+    // 제목과 버튼을 감싸는 컨테이너
+    const FlexContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+// 버튼을 배치시키는 컨테이너
+    const GridContainer = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 48px);
+	grid-column-gap: 8px;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 16px;
+`;
+
+    const URLShareButton = styled.button`
+	width: 48px;
+	height: 48px;
+	color: white;
+	border-radius: 24px;
+	border: 0px;
+	font-weight: 800;
+	font-size: 18px;
+	cursor: pointer;
+	background-color: #7362ff;
+	&:hover {
+		background-color: #a99fee;
+	}
+`;
+
+
+    const currentUrl = window.location.href;
+
+    const shareData = {
+        title: "MDN",
+        text: "Learn web development on MDN!",
+        url: currentUrl,
+    };
+
+    const clickShareBtn = async () => {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            console.log('실패')
+            setShowInvalidBrowser(true)
+        }
+    }
 
     return (
         <Container fluid>
@@ -158,6 +218,19 @@ const ResultPage = () => {
                             홈 화면으로 돌아가기
                         </Button>
                     </div>
+                    <FlexContainer>
+                        <GridContainer>
+                            <FacebookShareButton url={currentUrl}>
+                                <FacebookIcon size={48} round={true} borderRadius={24}></FacebookIcon>
+                            </FacebookShareButton>
+                            <TwitterShareButton url={currentUrl}>
+                                <TwitterIcon size={48} round={true} borderRadius={24}></TwitterIcon>
+                            </TwitterShareButton>
+                            <IconButton onClick={clickShareBtn} style={{ width: '48px', height: '48px', borderRadius: '24px', border: '2px solid #3949ab', backgroundColor: '#3949ab' }}>
+                                <FaShare style={{ fontSize: '24px', color: 'white' }} />
+                            </IconButton>
+                        </GridContainer>
+                    </FlexContainer>
                 </Col>
                 <Col md={4} sm={0}></Col>
                 <Modal show={show} onHide={handleClose}>
@@ -175,6 +248,27 @@ const ResultPage = () => {
                         </Button>
                         <Button onClick={handleExit}>
                             홈 화면으로 돌아 갈래요
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+                <Modal show={showInvalidBrowser} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>공유 불가</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        지원하지 않는 브라우저입니다.
+                        <br/>
+                        지원 가능 브라우저:
+                        <br/>
+                        웹: Safari, Edge
+                        <br/>
+                        모바일(android): Chrome, Firefox, Opera for Android
+                        <br/>
+                        모바일(ios): Safari for IOS
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={handleClose}>
+                            확인
                         </Button>
                     </Modal.Footer>
                 </Modal>
