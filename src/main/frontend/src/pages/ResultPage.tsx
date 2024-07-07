@@ -7,13 +7,12 @@ import resultImage3 from '../image/resultPage3.jpeg';
 import resultImage4 from '../image/resultPage4.jpeg';
 import resultImage5 from '../image/resultPage5.jpeg';
 import resultImage6 from '../image/resultPage6.jpeg';
-import {useNavigate, useParams} from "react-router";
+import {useLocation, useNavigate, useParams} from "react-router";
 import {FaArrowLeft, FaDownload, FaShare} from "react-icons/fa";
 import styled from "@emotion/styled";
-// import { CopyToClipboard } from 'react-copy-to-clipboard'
 import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
 import {IconButton} from "@mui/material";
-import {Share} from '@material-ui/icons';
+import {MdOutlineContentCopy} from "react-icons/md";
 
 const ResultPage = () => {
     const navigate = useNavigate()
@@ -60,25 +59,22 @@ const ResultPage = () => {
         navigate('/')
     }
     const handleShow = () => setShow(true);
-    const backgroundImage = require('../image/questionPage.png');
 
-    // 제목과 버튼을 감싸는 컨테이너
     const FlexContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-    margin-top: 10px;    
-`;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;    
+    `;
 
-// 버튼을 배치시키는 컨테이너
     const GridContainer = styled.div`
-	display: grid;
-	grid-template-columns: repeat(3, 48px);
-	grid-column-gap: 8px;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 16px;
-`;
+        display: grid;
+        grid-template-columns: repeat(4, 48px);
+        grid-column-gap: 8px;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 16px;
+    `;
 
     const URLShareButton = styled.button`
 	width: 48px;
@@ -109,6 +105,16 @@ const ResultPage = () => {
         } catch (err) {
             console.log('실패')
             setShowInvalidBrowser(true)
+        }
+    }
+
+    const clickCopyUrlBtn = async () => {
+        try {
+            await navigator.clipboard.writeText(currentUrl);
+            alert("클립보드에 링크가 복사되었어요." + currentUrl);
+        } catch (err) {
+            console.log('실패')
+            // setShowInvalidBrowser(true)
         }
     }
 
@@ -228,6 +234,9 @@ const ResultPage = () => {
                             </TwitterShareButton>
                             <IconButton onClick={clickShareBtn} style={{ width: '48px', height: '48px', borderRadius: '24px', border: '2px solid #3949ab', backgroundColor: '#3949ab' }}>
                                 <FaShare style={{ fontSize: '24px', color: 'white' }} />
+                            </IconButton>
+                            <IconButton onClick={clickCopyUrlBtn} style={{ width: '48px', height: '48px', borderRadius: '24px', border: '2px solid #3949ab', backgroundColor: '#3949ab' }}>
+                                <MdOutlineContentCopy style={{ fontSize: '24px', color: 'white' }} />
                             </IconButton>
                         </GridContainer>
                     </FlexContainer>
