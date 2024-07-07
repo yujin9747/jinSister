@@ -17,10 +17,6 @@ const QuestionPage = () => {
     }
 
     type ResultType = 'C' | 'S' | 'A' | 'E' | 'I' | 'R';
-    interface PostJandi {
-        answers: number[];
-        resultType: ResultType;
-    }
 
     const determineResultId = async (answers: number[]): Promise<number> => {
         const resultTypeScores: Record<ResultType, number> = {

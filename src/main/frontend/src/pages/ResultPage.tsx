@@ -8,7 +8,7 @@ import resultImage4 from '../image/resultPage4.jpeg';
 import resultImage5 from '../image/resultPage5.jpeg';
 import resultImage6 from '../image/resultPage6.jpeg';
 import {useLocation, useNavigate, useParams} from "react-router";
-import {FaArrowLeft, FaDownload, FaShare} from "react-icons/fa";
+import {FaDownload, FaGift, FaRedo, FaShare, FaUserPlus} from "react-icons/fa";
 import styled from "@emotion/styled";
 import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
 import {IconButton} from "@mui/material";
@@ -16,9 +16,14 @@ import {MdOutlineContentCopy} from "react-icons/md";
 import axios from "axios";
 
 const ResultPage = () => {
+    const location = useLocation()
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [showInvalidBrowser, setShowInvalidBrowser] = useState(false);
+    const [showEventPromotion, setShowEventPromotion] = useState(true);
+
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
 
     const { resultId } = useParams()
 
@@ -69,6 +74,7 @@ const ResultPage = () => {
     const handleClose = () => {
         setShow(false);
         setShowInvalidBrowser(false);
+        setShowEventPromotion(false);
     }
     const handleExit = () => {
         setShow(false)
@@ -131,6 +137,32 @@ const ResultPage = () => {
         } catch (err) {
             alert("클립보드 복사에 실패했어요. 다시 시도해 주세요.");
         }
+    }
+
+    const handleEventSubmit = async (event: any) => {
+        event.preventDefault();
+
+        await axios.post(
+            'https://wh.jandi.com/connect-api/webhook/31418946/9cc4e165d1a8848507f628d74afa2878',
+            {
+                body: JSON.stringify({
+                    name: name,
+                    phone: phone,
+                    resultId: resultId,
+                    answers: location.state
+                })
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/vnd.tosslab.jandi-v2+json'
+                }
+            }
+        ).then(r => {
+            console.log(r)
+        })
+        setShowEventPromotion(false);
+        setName('');
+        setPhone('');
     }
 
     return (
@@ -232,11 +264,15 @@ const ResultPage = () => {
                     <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
                         <Button onClick={downloadImage} style={{flex: 1, color: '#3949ab'}}>
                             <FaDownload style={{ marginRight: '5px' }} />
-                            결과 이미지 다운로드
+                            결과 다운로드
+                        </Button>
+                        <Button onClick={() => setShowEventPromotion(true)} style={{flex: 1, color: '#3949ab'}}>
+                            <FaGift style={{ marginRight: '5px' }} />
+                            이벤트 참여하기
                         </Button>
                         <Button onClick={handleShow} style={{flex: 1, color: '#3949ab'}}>
-                            <FaArrowLeft style={{ marginRight: '5px' }} />
-                            홈 화면으로 돌아가기
+                            <FaRedo style={{ marginRight: '5px' }} />
+                            다시 하기
                         </Button>
                     </div>
                     <FlexContainer>
@@ -295,6 +331,43 @@ const ResultPage = () => {
                             확인
                         </Button>
                     </Modal.Footer>
+                </Modal>
+                <Modal show={showEventPromotion} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>이벤트 참여</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <form onSubmit={handleEventSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="nameInput" className="form-label">이름</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="nameInput"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="phoneInput" className="form-label">전화번호</label>
+                                <input
+                                    type="tel"
+                                    className="form-control"
+                                    id="phoneInput"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <Button type="submit">
+                                제출하기
+                            </Button>
+                            <Button onClick={handleClose} className="ms-2">
+                                참여하지 않기
+                            </Button>
+                        </form>
+                    </Modal.Body>
                 </Modal>
             </Row>
         </Container>
