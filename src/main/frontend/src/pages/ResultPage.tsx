@@ -337,9 +337,13 @@ const ResultPage = () => {
                         <Modal.Title>이벤트 참여</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form onSubmit={handleEventSubmit}>
+                        이벤트 참여 시 추첨을 통해 소정의 선물(기프티콘)을 보내 드립니다!<br/>
+                        참여 기간: 7/8 ~ 7/31<br/>
+                        개인 정보는 이벤트 이외의 목적으로 사용되지 않으며, <br/>7/31 이후 모두 삭제 됩니다.<br/>
+                        <form onSubmit={handleEventSubmit} style={{marginTop: '10px'}}>
                             <div className="mb-3">
-                                <label htmlFor="nameInput" className="form-label">이름</label>
+                                <label htmlFor="nameInput" className="form-label" style={{fontWeight: 'bold'}}>이름(혹은
+                                    닉네임)</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -350,7 +354,8 @@ const ResultPage = () => {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="phoneInput" className="form-label">전화번호</label>
+                                <label htmlFor="phoneInput" className="form-label"
+                                       style={{fontWeight: 'bold'}}>전화번호</label>
                                 <input
                                     type="tel"
                                     className="form-control"
@@ -360,12 +365,11 @@ const ResultPage = () => {
                                     required
                                 />
                             </div>
-                            <Button type="submit">
-                                제출하기
-                            </Button>
-                            <Button onClick={handleClose} className="ms-2">
-                                참여하지 않기
-                            </Button>
+                            <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                <Button style={{ flex: 1 }} type="submit">
+                                    제출하기
+                                </Button>
+                            </div>
                         </form>
                     </Modal.Body>
                 </Modal>
