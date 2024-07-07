@@ -279,10 +279,9 @@ const QuestionPage = () => {
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
                     <div style={{
-                        // marginTop: '3%',
+                        marginTop: '10%',
                         marginBottom: '5px',
                         height: '50%',
-                        width: '100%',
                         display: 'flex',
                         justifyContent: 'center',
                         backgroundImage: `url(${backgroundImage})`,
@@ -400,47 +399,16 @@ const QuestionPage = () => {
                         >
                             매우 그렇다
                         </div>
-                        <div style={{
-                            width: '100%',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            marginTop: '20px'
-                        }}>
-                            <div
-                                onClick={() => handleButtonClick(5)}
-                                style={{
-                                    width: '95%',
-                                    height: '3rem',
-                                    borderRadius: '15px',
-                                    border: '2px solid black',
-                                    fontWeight: 'bold',
-                                    fontSize: '1rem',
-                                    justifyContent: 'center',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginBottom: '3px',
-                                    backgroundColor: selectedButton == 5 ? 'black' : 'white',
-                                    color: selectedButton == 5 ? 'white' : 'black'
-                                }}
-                            >
-                                매우 그렇다
-                            </div>
-                            <div onClick={handleBefore}>
-                                <Button style={{flex: 1, marginRight: '5px', padding: '15px'}}>
-                                    <FaArrowLeft/>
-                                </Button>
-                            </div>
-                            <div onClick={handleShow}>
-                                <Button style={{flex: 1, marginLeft: '5px', padding: '15px'}}>
-                                    <FaHome/>
-                                </Button>
-                            </div>
-                            <div onClick={handleNext}>
-                                <Button style={{flex: 1, marginLeft: '5px', padding: '15px'}} disabled={!isAnswered}>
-                                    <FaArrowRight/>
-                                </Button>
-                            </div>
-
+                        <div style={{width: '100%', display: 'flex', marginTop: '10px'}}>
+                            <Button onClick={handleBefore} style={{flex: 1, marginRight: '5px', padding: '15px'}}>
+                                <FaArrowLeft />
+                            </Button>
+                            <Button onClick={handleShow} style={{flex: 1, marginLeft: '5px', padding: '15px'}}>
+                                <FaHome />
+                            </Button>
+                            <Button onClick={handleNext} style={{flex: 1, marginLeft: '5px', padding: '15px'}} disabled={!isAnswered}>
+                                <FaArrowRight />
+                            </Button>
                         </div>
                     </Form>
                 </Col>
