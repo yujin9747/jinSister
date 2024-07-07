@@ -95,11 +95,11 @@ const ResultPage = () => {
 `;
 
 
-    const currentUrl = window.location.href;
+    const currentUrl = 'https://mascot-jin.netlify.com';
 
     const shareData = {
-        title: "MDN",
-        text: "Learn web development on MDN!",
+        title: "마스코트 성격 유형 검사",
+        text: "지역 마스코트로 알아보는 성격 유형 검사 시작하기",
         url: currentUrl,
     };
 
