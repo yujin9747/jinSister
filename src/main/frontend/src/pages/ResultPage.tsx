@@ -48,7 +48,7 @@ const ResultPage = () => {
         navigate('/')
     }
     const handleShow = () => setShow(true);
-
+    const backgroundImage = require('../image/questionPage.png');
 
     return (
         <Container fluid>
@@ -127,9 +127,25 @@ const ResultPage = () => {
             <Row className="vh-100">
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
-                    <div style={{height: '70%', display: 'flex', justifyContent: 'center'}}>
-                        <Image src={require(`../image/resultPage${resultId}.jpeg`)} rounded width='90%' height='auto'
-                               style={{marginTop: '10%'}}></Image>
+                    <div
+                        style={{
+                            height: '80vh',
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}
+                    >
+                        <Image src={require(`../image/resultPage${resultId}.jpeg`)}
+                               fluid
+                               width='auto'
+                               height='70vh'
+                               style={{
+                                   marginTop: '10%',
+                                   borderRadius: '10px',
+                                   boxShadow: '0px 0px 10px 0px #81fd98'
+                               }}
+                        >
+
+                        </Image>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
                         <Button onClick={downloadImage} style={{flex: 1}}>결과 이미지 다운로드</Button>
