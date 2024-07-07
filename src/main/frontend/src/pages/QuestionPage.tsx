@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import Button from "@mui/material/Button";
 import {FaArrowLeft, FaArrowRight, FaHome} from "react-icons/fa";
+import axios from "axios";
 
 const QuestionPage = () => {
     const navigate = useNavigate()
@@ -64,7 +65,14 @@ const QuestionPage = () => {
             }
         }
 
-        return getResultImageNumber(resultType)
+        axios.post(
+            'https://wh.jandi.com/connect-api/webhook/31418946/1578432fd5308f5f846d71dfb5b6f78f',
+            'test'
+        ).then(r => {
+            console.log(r)
+        })
+
+         return getResultImageNumber(resultType)
     }
 
     const getResultImageNumber = (resultType: ResultType): number => {
