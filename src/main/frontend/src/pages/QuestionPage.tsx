@@ -2,6 +2,7 @@ import {Col, Container, Form, Image, Row, Modal} from "react-bootstrap";
 import React, {useCallback, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import Button from "@mui/material/Button";
+import {FaArrowLeft, FaArrowRight, FaHome} from "react-icons/fa";
 
 const QuestionPage = () => {
     const navigate = useNavigate()
@@ -399,17 +400,17 @@ const QuestionPage = () => {
                         >
                             매우 그렇다
                         </div>
-                        <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '20px'}}>
-                            <Button onClick={handleBefore} style={{flex: 1, marginRight: '5px'}}>
-                                이전
+                        <div style={{width: '100%', display: 'flex', justifyContent: 'space-between', marginTop: '20px'}}>
+                            <Button onClick={handleBefore} style={{flex: 1, marginRight: '5px', padding: '15px'}}>
+                                <FaArrowLeft />
                             </Button>
-                            <Button onClick={handleNext} style={{flex: 1, marginLeft: '5px'}} disabled={!isAnswered}>
-                                다음
+                            <Button onClick={handleShow} style={{flex: 1, marginLeft: '5px', padding: '15px'}}>
+                                <FaHome />
+                            </Button>
+                            <Button onClick={handleNext} style={{flex: 1, marginLeft: '5px', padding: '15px'}} disabled={!isAnswered}>
+                                <FaArrowRight />
                             </Button>
                         </div>
-                        <Button onClick={handleShow} style={{width: '100%'}}>
-                            홈 화면으로 돌아가기
-                        </Button>
                     </Form>
                 </Col>
                 <Col md={4} sm={0}></Col>
