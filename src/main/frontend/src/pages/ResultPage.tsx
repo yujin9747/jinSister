@@ -95,11 +95,10 @@ const ResultPage = () => {
 `;
 
 
-    const currentUrl = 'https://mascot-jin.netlify.com';
+    const currentUrl = 'https://mascot-jin.netlify.app/';
 
     const shareData = {
         title: "마스코트 성격 유형 검사",
-        text: "지역 마스코트로 알아보는 성격 유형 검사 시작하기",
         url: currentUrl,
     };
 
