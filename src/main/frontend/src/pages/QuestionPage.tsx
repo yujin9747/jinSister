@@ -276,7 +276,8 @@ const QuestionPage = () => {
             <h1 style={{display: 'none'}}>원리원칙대로 행동하고 또 그렇게 살려고 한다.</h1>
 
             <Row className="vh-100">
-                <Col md={4} sm={0}></Col>
+                <Col md={4} className="d-none d-md-block"></Col>
+                {/*<Col md={4} sm={0}></Col>*/}
                 <Col md={4} sm={12}>
                     <div style={{
                         marginTop: '10%',
@@ -412,7 +413,8 @@ const QuestionPage = () => {
                         </div>
                     </Form>
                 </Col>
-                <Col md={4} sm={0}></Col>
+                <Col md={4} className="d-none d-md-block"></Col>
+                {/*<Col md={4} sm={0}></Col>*/}
             </Row>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
