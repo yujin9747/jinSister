@@ -294,7 +294,7 @@ const QuestionPage = () => {
                             padding: '30px',
                             textAlign: 'center',
                             color: 'black',
-                            fontSize: '200%',
+                            fontSize: '20px',
                             fontWeight: 'bold',
                             whiteSpace: 'pre-wrap',
                             wordWrap: 'break-word',
