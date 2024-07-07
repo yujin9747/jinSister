@@ -26,6 +26,9 @@ const MainPage: React.FC = () => {
                                style={{marginTop: '10%', marginBottom: '20px'}}></Image>
                     </div>
                     <Row style={{display: 'flex', justifyContent: 'center'}}>
+                        소요 시간: 1분 30초 내외
+                    </Row>
+                    <Row style={{display: 'flex', justifyContent: 'center'}}>
                         <Button
                             variant="contained"
                             size="large"

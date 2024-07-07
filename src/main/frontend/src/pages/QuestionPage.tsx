@@ -1,5 +1,5 @@
-import {Col, Container, Form, Image, Row, Modal} from "react-bootstrap";
-import React, {useCallback, useEffect, useState} from "react";
+import {Col, Container, Form, Image, Row, Modal, ProgressBar} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import Button from "@mui/material/Button";
 import {FaArrowLeft, FaArrowRight, FaHome} from "react-icons/fa";
@@ -173,6 +173,9 @@ const QuestionPage = () => {
         '원리원칙대로 행동하고 \n또 그렇게 살려고 한다'
     ]
 
+    const answeredCount = answers.filter(answer => answer !== null).length;
+    const progress = (answeredCount / questions.length) * 100;
+
     return (
         <Container fluid>
             <h1 style={{display: 'none'}}>방 안에 조용히 있으면 답답해지거나 잠이 온다.</h1>
@@ -211,6 +214,11 @@ const QuestionPage = () => {
             <Row className="vh-100 align-items-center">
                 <Col md={4} className="d-none d-md-block"></Col>
                 <Col md={4} sm={12} className="d-flex flex-column justify-content-center">
+                    <ProgressBar
+                        now={progress}
+                        label={`${progress.toFixed(0)}%`}
+                        variant="success"
+                    />
                     <div style={{
                         width: '100%',
                         height: '45vh',

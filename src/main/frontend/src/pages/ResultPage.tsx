@@ -111,10 +111,9 @@ const ResultPage = () => {
     const clickCopyUrlBtn = async () => {
         try {
             await navigator.clipboard.writeText(currentUrl);
-            alert("클립보드에 링크가 복사되었어요." + currentUrl);
+            alert("클립보드에 링크가 복사되었어요.");
         } catch (err) {
-            console.log('실패')
-            // setShowInvalidBrowser(true)
+            alert("클립보드 복사에 실패했어요. 다시 시도해 주세요.");
         }
     }
 
