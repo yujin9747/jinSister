@@ -293,7 +293,8 @@ const QuestionPage = () => {
                             padding: '30px',
                             textAlign: 'center',
                             color: 'black',
-                            fontSize: '20px',
+                            // fontSize: '20px',
+                            fontSize: 'calc(10px + 1.5vw)',
                             fontWeight: 'bold',
                             whiteSpace: 'pre-wrap',
                             wordWrap: 'break-word',
@@ -305,108 +306,71 @@ const QuestionPage = () => {
                     <Form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <div
                             onClick={() => handleButtonClick(1)}
-                            style={{
-                                width: '100%',
-                                height: '3rem',
-                                borderRadius: '15px',
-                                border: '2px solid black',
-                                fontWeight: 'bold',
-                                fontSize: '1rem',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: '3px',
-                                backgroundColor: selectedButton == 1 ? 'black' : 'white',
-                                color: selectedButton == 1 ? 'white' : 'black'
-                            }}
+                            className={`answer-button ${selectedButton === 1 ? 'selected' : ''}`}
                         >
                             매우 그렇지 않다
                         </div>
                         <div
                             onClick={() => handleButtonClick(2)}
-                            style={{
-                                width: '100%',
-                                height: '3rem',
-                                borderRadius: '15px',
-                                border: '2px solid black',
-                                fontWeight: 'bold',
-                                fontSize: '1rem',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: '3px',
-                                backgroundColor: selectedButton == 2 ? 'black' : 'white',
-                                color: selectedButton == 2 ? 'white' : 'black'
-                            }}
+                            className={`answer-button ${selectedButton === 2 ? 'selected' : ''}`}
                         >
                             그렇지 않다
                         </div>
                         <div
                             onClick={() => handleButtonClick(3)}
-                            style={{
-                                width: '100%',
-                                height: '3rem',
-                                borderRadius: '15px',
-                                border: '2px solid black',
-                                fontWeight: 'bold',
-                                fontSize: '1rem',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: '3px',
-                                backgroundColor: selectedButton == 3 ? 'black' : 'white',
-                                color: selectedButton == 3 ? 'white' : 'black'
-                            }}
+                            className={`answer-button ${selectedButton === 3 ? 'selected' : ''}`}
                         >
                             보통이다
                         </div>
                         <div
                             onClick={() => handleButtonClick(4)}
-                            style={{
-                                width: '100%',
-                                height: '3rem',
-                                borderRadius: '15px',
-                                border: '2px solid black',
-                                fontWeight: 'bold',
-                                fontSize: '1rem',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: '3px',
-                                backgroundColor: selectedButton == 4 ? 'black' : 'white',
-                                color: selectedButton == 4 ? 'white' : 'black'
-                            }}
+                            className={`answer-button ${selectedButton === 4 ? 'selected' : ''}`}
                         >
                             그렇다
                         </div>
                         <div
                             onClick={() => handleButtonClick(5)}
-                            style={{
-                                width: '100%',
-                                height: '3rem',
-                                borderRadius: '15px',
-                                border: '2px solid black',
-                                fontWeight: 'bold',
-                                fontSize: '1rem',
-                                justifyContent: 'center',
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: '3px',
-                                backgroundColor: selectedButton == 5 ? 'black' : 'white',
-                                color: selectedButton == 5 ? 'white' : 'black'
-                            }}
+                            className={`answer-button ${selectedButton === 5 ? 'selected' : ''}`}
                         >
                             매우 그렇다
                         </div>
                         <div style={{width: '100%', display: 'flex', marginTop: '10px'}}>
-                            <Button onClick={handleBefore} style={{flex: 1, marginRight: '5px', padding: '15px'}}>
-                                <FaArrowLeft />
+                            <Button
+                                onClick={handleBefore}
+                                style={{
+                                    flex: 1,
+                                    marginRight: '5px',
+                                    padding: '15px',
+                                    border: 'none',
+                                    outline: 'none',
+                                }}
+                            >
+                                <FaArrowLeft style={{ color: '#3949ab'}}/>
                             </Button>
-                            <Button onClick={handleShow} style={{flex: 1, marginLeft: '5px', padding: '15px'}}>
-                                <FaHome />
+                            <Button
+                                onClick={handleShow}
+                                style={{
+                                    flex: 1,
+                                    marginRight: '5px',
+                                    padding: '15px',
+                                    border: 'none',
+                                    outline: 'none',
+                                }}
+                            >
+                                <FaHome style={{ color: '#3949ab'}}/>
                             </Button>
-                            <Button onClick={handleNext} style={{flex: 1, marginLeft: '5px', padding: '15px'}} disabled={!isAnswered}>
-                                <FaArrowRight />
+                            <Button
+                                onClick={handleNext}
+                                style={{
+                                    flex: 1,
+                                    marginRight: '5px',
+                                    padding: '15px',
+                                    border: 'none',
+                                    outline: 'none',
+                                }}
+                                disabled={!isAnswered}
+                            >
+                                <FaArrowRight style={{ color: isAnswered ? '#3949ab' : 'gray' }}/>
                             </Button>
                         </div>
                     </Form>
