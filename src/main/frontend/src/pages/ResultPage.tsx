@@ -13,6 +13,7 @@ import styled from "@emotion/styled";
 import {FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton} from "react-share";
 import {IconButton} from "@mui/material";
 import {MdOutlineContentCopy} from "react-icons/md";
+import axios from "axios";
 
 const ResultPage = () => {
     const navigate = useNavigate()
@@ -40,7 +41,22 @@ const ResultPage = () => {
         }
     }
 
-    const downloadImage = () => {
+    const downloadImage = async () => {
+        await axios.post(
+            'https://wh.jandi.com/connect-api/webhook/31418946/db8dcc71f936eec942cab6571bea0af7',
+            {
+                body: JSON.stringify({
+                    resultType: resultId
+                })
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/vnd.tosslab.jandi-v2+json'
+                }
+            }
+        ).then(r => {
+            console.log(r)
+        })
         const imageUrl = getResultImage(resultId)
         const link = document.createElement('a');
         link.href = imageUrl[0];
