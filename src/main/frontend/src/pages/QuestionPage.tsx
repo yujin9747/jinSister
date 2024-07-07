@@ -116,7 +116,7 @@ const QuestionPage = () => {
                 const firstUnansweredQuestion = answers.findIndex(answer => answer === null || answer === undefined || answer === '');
                 navigate(`/question/${firstUnansweredQuestion + 1}`);
             } else {
-                gtag('event', 'submit-answers',
+                window.gtag('event', 'submit-answers',
                     {
                         eventCategory: 'result',
                         eventAction: 'click',
