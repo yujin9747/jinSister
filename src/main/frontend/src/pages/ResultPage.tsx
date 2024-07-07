@@ -8,6 +8,8 @@ import resultImage4 from '../image/resultPage4.jpeg';
 import resultImage5 from '../image/resultPage5.jpeg';
 import resultImage6 from '../image/resultPage6.jpeg';
 import {useNavigate, useParams} from "react-router";
+import {BsArrowLeft, BsDownload} from "react-icons/bs";
+import {FaArrowLeft, FaDownload} from "react-icons/fa";
 const ResultPage = () => {
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
@@ -144,12 +146,15 @@ const ResultPage = () => {
                                    boxShadow: '0px 0px 10px 0px #81fd98'
                                }}
                         >
-
                         </Image>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
-                        <Button onClick={downloadImage} style={{flex: 1}}>결과 이미지 다운로드</Button>
-                        <Button onClick={handleShow} style={{flex: 1}}>
+                        <Button onClick={downloadImage} style={{flex: 1, color: '#3949ab'}}>
+                            <FaDownload style={{ marginRight: '5px' }} />
+                            결과 이미지 다운로드
+                        </Button>
+                        <Button onClick={handleShow} style={{flex: 1, color: '#3949ab'}}>
+                            <FaArrowLeft style={{ marginRight: '5px' }} />
                             홈 화면으로 돌아가기
                         </Button>
                     </div>
