@@ -21,15 +21,15 @@ const MainPage: React.FC = () => {
             <Row className="vh-100">
                 <Col md={4} sm={0}></Col>
                 <Col md={4} sm={12}>
-                    <div style={{height: '70%', display: 'flex', justifyContent: 'center'}}>
-                        <Image src={require('../image/mainPage.png')} rounded width='90%' height='auto'
+                    <div style={{height: '70vh', display: 'flex', justifyContent: 'center'}}>
+                        <Image src={require('../image/mainPage.png')} rounded width='100%' height='auto'
                                style={{marginTop: '10%', marginBottom: '20px'}}></Image>
                     </div>
                     <Row style={{display: 'flex', justifyContent: 'center'}}>
                         <Button
                             variant="contained"
                             size="large"
-                            style={{marginTop: '20px', width: '75%', backgroundColor: '#3949ab'}}
+                            style={{marginTop: '20px', width: '80%', backgroundColor: '#3949ab'}}
                             onClick={() => navigate("/question/1")}
                         >
                             시작하기

@@ -68,3 +68,27 @@
   background-color: lightgray;
   color: black;
 }
+
+@media (max-width: 768px) {
+  .answer-button:hover {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
+.question-text {
+  padding: 30px;
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .question-text {
+    font-size: 20px;
+  }
+}

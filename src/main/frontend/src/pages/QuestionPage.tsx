@@ -193,9 +193,9 @@ const QuestionPage = () => {
         }
     }
 
-    useEffect(() => {
-        console.log(answers)
-    }, [answers])
+    // useEffect(() => {
+    //     console.log(answers)
+    // }, [answers])
 
     useEffect(() => {
         setSelectedButton(answers[parsedId-1])
@@ -240,6 +240,10 @@ const QuestionPage = () => {
         '나는 적극적이고 주장이 \n강한 편이다',
         '원리원칙대로 행동하고 \n또 그렇게 살려고 한다'
     ]
+
+    useEffect(() => {
+        console.log(selectedButton)
+    }, [selectedButton]);
     return (
         <Container fluid>
             <h1 style={{display: 'none'}}>방 안에 조용히 있으면 답답해지거나 잠이 온다.</h1>
@@ -289,17 +293,7 @@ const QuestionPage = () => {
                         backgroundPosition: 'center',
                         alignItems: 'center',
                     }}>
-                        <div style={{
-                            padding: '30px',
-                            textAlign: 'center',
-                            color: 'black',
-                            // fontSize: '20px',
-                            fontSize: 'calc(10px + 1.5vw)',
-                            fontWeight: 'bold',
-                            whiteSpace: 'pre-wrap',
-                            wordWrap: 'break-word',
-                            overflowWrap: 'break-word',
-                        }}>
+                        <div className='question-text'>
                             {questions[parsedId-1]}
                         </div>
                     </div>
