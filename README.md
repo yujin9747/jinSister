@@ -3,7 +3,8 @@
 각 지역의 마스코트로 알아보는 성격 유형 검사이다. 
 검사 질문지는 직업 적성 유형 검사 strong 을 기반으로 한다. 
 
-strong 검사 소개: https://www.career4u.net/Tester/STRONG_Intro.asp?
+strong 검사 소개: https://www.career4u.net/Tester/STRONG_Intro.asp
+
 사이트 링크: https://mascot-jin.netlify.app/
 
 # 기획 의도
